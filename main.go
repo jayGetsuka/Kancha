@@ -82,6 +82,7 @@ func PostRegister(c *gin.Context) {
 }
 
 var members = []Member{}
+var Memberid = 0
 
 func PostLogin(c *gin.Context) {
 	email := c.PostForm("email")
@@ -115,6 +116,7 @@ func PostLogin(c *gin.Context) {
 			}
 			// append the current instance to the slice of birds
 			members = append(members, member)
+			Memberid = member.Id
 		}
 
 		c.HTML(http.StatusOK, "index.html", gin.H{
@@ -122,6 +124,46 @@ func PostLogin(c *gin.Context) {
 		})
 	}
 
+}
+func AddQuestion(c *gin.Context) {
+	title := c.PostForm("title")
+	detail := c.PostForm("details")
+
+	if members == nil {
+		c.HTML(http.StatusOK, "login.html", gin.H{
+			"content": "This is an index page...",
+		})
+	}
+
+	db, err := sql.Open("mysql", "root"+":"+""+"@tcp(127.0.0.1:3306)/"+"kancha")
+
+	// if there is an error opening the connection, handle it
+	if err != nil {
+		// simply print the error to the console
+		c.HTML(http.StatusOK, "register.html", gin.H{
+			"content": err.Error(),
+		})
+		// returns nil on error
+
+	}
+
+	defer db.Close()
+	results, err := db.Query("INSERT INTO questions (QuestTitle, QuestDetail, QuestMemberID)VALUES (?, ?, ?);", title, detail, Memberid)
+
+	if err != nil {
+		c.HTML(http.StatusOK, "login.html", gin.H{
+			"content": err.Error(),
+		})
+	} else {
+		c.HTML(http.StatusOK, "showChat.html", gin.H{
+			"content": results,
+		})
+	}
+
+}
+
+func getProperty(member *[]Member, s string) {
+	panic("unimplemented")
 }
 func Logout(c *gin.Context) {
 	members = nil
@@ -150,6 +192,8 @@ func main() {
 	router.POST("/register", PostRegister)
 	router.POST("/login", PostLogin)
 	router.GET("/logout", Logout)
+	router.POST("/addQuestion", AddQuestion)
+
 	router.Run(":8080")
 
 }
