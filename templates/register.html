@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANCHA register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/Style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand text-success px-5 fw-bold fs-3" href="#">KANCHA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <br>
+    <div class="row justify-content-evenly">
+        <!-- <div class="col-4">
+            <p class="text-success px-5 fw-bold fs-1">
+                เข้าสู่ระบบเพื่อพูดคุย
+            </p>
+            <img class="w-100" src="img/mobile_messages.svg" alt="mobile_messages">
+        </div> -->
+        
+    {{ if not . }}
+        &nbsp;
+    {{ else }}
+        <p>{{ .resultReg }}</p>
+    {{ end }}
+
+        <div class="col-3 my-5">
+            <form action="/register" method="post">
+                <p class="text-success text-center fw-bold fs-1">
+                    สมัครสมาชิกเพื่อพูดคุย
+                </p>
+                <div class="mb-3">
+                    <input type="text" class="form-control form-control" id="fullname" placeholder="Name" name="fullname">
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control form-control" id="Email" placeholder="Email address" name="email">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control " id="password" placeholder="Password" name="password">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success ">Register</button> 
+                    <a href="login.html" class="btn btn-outline-success ">Login</a>
+                </div>
+                
+                
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

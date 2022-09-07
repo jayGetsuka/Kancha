@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANCHA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/Style.css">
+</head>
+
+<body>
+    {{ template "navbar.html" . }}
+    <br>
+    <div class="row justify-content-evenly">
+        <div class="col-4 p-5">
+            <p class="text-success px-5 fw-bold fs-1">
+                เว็บบอร์ดพูดคุย<br>
+                แนะนำสายพันธุ์กัญชา
+            </p>
+            <p class="text-success px-5 fs-4">คำอธิบาย</p>
+            <div class="px-5 ">
+                <a href="showChat.html" type="button" class="btn btn-success rounded-pill fs-5 px-4">พูดคุย</a>
+            </div>
+        </div>
+        <div class="col-4">
+            <img class="pe-5" src="img/begin_chat.svg" alt="begin_chat">
+        </div>
+    </div><br><br><br>
+    <!-- สายพันธุ์ -->
+    <div id="strains">
+        <div class="container py-4 text-success">
+            <header class="pb-3 mb-4 border-bottom">
+                <span class="fs-4">สายพันธุ์</span>
+                </a>
+            </header>
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-3">
+                    <h4 class="">กัญชา เป็นพืชสกุล Cannabis อยู่ในวงศ์ Cannabaceae มี 3 สายพันธุ์ที่พบบ่อย ได้แก่
+                        สายพันธุ์ซาติวา (Cannabis sativa) สายพันธุ์อินดิกา (Cannabis indica) และสายพันธุ์รูเดอราลิส
+                        (Cannabis ruderalis) ส่วนคำว่ามาลีฮวนน่า (Marijuana) เป็นคำแสลงที่ใช้ส่วนดอกของต้นกัญชานำมาสูบ
+                    </h4>
+                </div>
+            </div>
+
+            <div class="row align-items-md-stretch ">
+                <div class="col-md-6 ">
+                    <div class="h-100 p-5 bg-light rounded-3">
+                        <h4>สายพันธุ์ซาติวา (Cannabis sativa)</h4>
+                        <p>เป็นภาษาละติน แปลว่า เพาะปลูก ตั้งโดย คาโรรัส ลินเนียส Carolus Linnæus หรือ Carl Linnaeus)
+                            นักพฤกษศาสตร์ชาวสวีเดน โดยจัดวงศ์พืชชนิดนี้ไว้เมื่อปี ค.ศ. 1753 (พ.ศ. 2296)
+                            มีแหล่งกำเนิดบริเวณเส้นศูนย์สูตร เช่น โคลัมเบีย เม็กซิโก (ทวีปอเมริกา) ตอนกลางของทวีปแอฟริกา
+                            และเอเชียตะวันออกเฉียงใต้<br> <b>แหล่งกำเนิด: </b>กัญชาสายพันธุ์ "ซาติวา"
+                            มีแหล่งกำลังเนิดบริเวณเส้นศูนย์สูตร ชอบแดด
+                            อากาศร้อนชื้น เช่น โคลัมเบีย เม็กซิโก (ทวีปอเมริกา) ตอนกลางของทวีปแอฟริกา
+                            และเอเชียตะวันออกเฉียงใต้ <br>
+                            <b>ลักษณะทางกายภาพ: </b> ลำต้นหนา ความสูงตั้งแต่ 1.5- 7.5 เมตร ใบยาว เรียว มักมี 5-9 แฉก
+                            สีเขียวค่อนข้างอ่อน ระยะเติบโตพร้อมเก็บเกี่ยว 9-16 สัปดาห์ <br>
+                            <b>คุณสมบัติ: </b> มีสาร THC ที่ออกฤทธิ์กระตุ้นประสาทสูงกว่าสายพันธุ์อินดิกา
+                        </p>
+                        <img class="w-50 rounded mx-auto d-block" src="img/santiva.png">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="h-100 p-5 bg-light rounded-3">
+                        <h4>สายพันธุ์อินดิกา (Cannabis Indica)</h4>
+                        <p>ผู้ค้นพบสายพันธุ์นี้คือ ฌอง-แบ๊บติสท์ ลามาร์ค (Jean-Baptiste Lamarck) ทหารนักชีววิทยา
+                            ชาวฝรั่งเศส ผู้ตั้งชื่อและตีพิมพ์ความรู้เรื่องกัญชาสายพันธุ์นี้ในปี ค.ศ. 1785 (พ.ศ. 2328)
+                            กัญชาสายพันธุ์อินดิกาได้ชื่อตามแหล่งกำเนิดที่ค้นพบในอินเดียและบริเวณตะวันออกกลาง เช่น
+                            ปากีสถาน อัฟกานิสถาน โมร็อกโก <br> <b>ลักษณะ : </b>มีลำต้นพุ่มเตี้ย
+                            ความสูงเมื่อเติบโตเต็มที่ประมาณ 180 เซนติเมตร ใบกว้าง สั้น สีเขียวเข้ม (เมื่อเทียบกับซาติวา)
+                            กิ่งก้านดกหนา ระยะเวลาการเติบโตพร้อมเก็บเกี่ยว 6-8 สัปดาห์ ชอบที่ร่มและอากาศเย็น <br>
+                            <b>คุณสมบัติ: </b> มีสาร CBD (Cannabidiol) ซึ่งออกฤทธิ์ระงับ ประสาท (Sedative)
+                            ทำให้กล้ามเนื้อผ่อนคลาย ลดอาการปวดเรื้อรัง
+                        </p>
+                        <img class="w-50 rounded mx-auto d-block" src="img/indica.png">
+                    </div>
+                </div>
+            </div><br>
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-3">
+                    <h4>สายพันธุ์รูเดอราลิส (Cannabis ruderalis) </h4>
+                    <p>ผู้ตีพิมพ์เรื่องราวกัญชาสายพันธุ์นี้คนแรก คือ นักพฤกษศาสตร์ชาวรัสเชีย ดี.อี. จานิสเชสกี้ (D. E.
+                        Janischewsky) เมื่อปี ค.ศ. 1924 (พ.ศ. 2467) กัญชาสายพันธุ์รูเดอราลิสมีแหล่ง
+                        กำเนิดบริเวณตอนกลางและตะวันออกของทวีปยุโรป เช่น รัสเชีย <br> <b>ลักษณะ :
+                        </b>มีลำต้นเตี้ยที่สุดในบรรดา 3 สายพันธุ์ ดูคล้ายวัชพืช ใบกว้างมี 3 แฉก เติบโตเร็ว
+                        อยู่ได้ทั้งอากาศร้อนและเย็น <br>
+                        <b>คุณสมบัติ: </b> ปริมาณสาร THC น้อย (เมื่อเทียบกับสองสายพันธุ์แรก) ทำให้ผ่อนคลาย นอนหลับ
+                        ลดอาการคลื่นไส้ แต่มี CBD สูง มักนำไปผสมข้ามสายพันธุ์ (hybrid) กับซาติวาและอินดิกา
+                        เพื่อให้ได้คุณสมบัติทางยา
+                    </p>
+                    <img class="w-25 rounded mx-auto d-block" src="img/ruderalis.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- การใช้ประโยชน์ -->
+    <div id="benefit">
+        <div class="container text-success">
+            <header class="pb-3 mb-4 border-bottom">
+                <span class="fs-4">การใช้ประโยชน์</span>
+                </a>
+            </header>
+            <div class="p-5 mb-4 rounded-3">
+                <div class="container-fluid py-2">
+                    <img class="w-50 rounded mx-auto d-block rounded-pill" src="img/marijuana-benefits.jpg"><br>
+                    <p>กัญชา มีประโยชน์อย่างไร กัญชารักษาโรคอะไรได้บ้าง… หนึ่งในนั้นเชื่อว่าหลายคนย่อมนึกถึงโรคมะเร็ง
+                        เนื่องจากโรคมะเร็งมีความซับซ้อนแตกแขนงได้มากมายหลายชนิด
+                        หากยึดตามงานวิจัยที่มีในปัจจุบันกัญชาจึงยังไม่ถูกบรรจุเป็นยารักษาโรคมะเร็งโดยตรง หยุดก่อน!
+                        อย่าเพิ่งถอนหายใจและหมดหวังที่ตรงนี้
+                        เพราะในต่างประเทศมีการใช้สารสกัดกัญชาเข้ามาช่วยควบคุมอาการข้างเคียงซึ่งเกิดจากการใช้ยาเคมีบำบัดในผู้ป่วยมะเร็งให้เห็นมาเป็นระยะเวลานานแล้ว
+                        วงการแพทย์ในบ้านเราจึงเลือกใช้สารสกัดจากกัญชาเข้ามาเป็นยาเสริมบรรเทาอาการเจ็บป่วยที่เกิดขึ้นหลังการผ่าตัด
+                        การฉายรังสี หรือการให้ยาเคมีบำบัด เพื่อเพิ่มคุณภาพชีวิตที่ดีขึ้นให้กับผู้ป่วย
+                        ช่วยให้ลดปริมาณการใช้ยาแก้ปวด บรรเทาอาการคลื่นไส้ เพิ่มความอยากอาหาร
+                        และสามารถนอนหลับพักผ่อนได้เต็มอิ่ม ภายใต้การควบคุมปริมาณโดยแพทย์ผู้เชี่ยวชาญ
+
+                        ได้รู้กันแล้วว่ากัญชา มีประโยชน์อย่างไร
+                        ในขณะเดียวกันก็มีผลข้างเคียงจากการใช้กัญชาที่พบเห็นได้บ้างคือ
+                        อาการความดันต่ำและเวียนศีรษะในช่วงแรกหลังเริ่มยา อัตราการเต้นของหัวใจอาจเพิ่มขึ้น
+                        ความตื่นตัวของผู้ใช้ลดลง และมีความอยากอาหารเพิ่มขึ้น
+                        อาการดังกล่าวจะอยู่เพียงชั่วครู่และเมื่อร่างกายสามารถทนต่อยาได้มากขึ้นอาการเหล่านั้นสามารถหายไปได้เอง
+                        ส่วนผลข้างเคียงที่พบได้บ่อยคืออาการปากแห้ง คอแห้ง ที่ดีขึ้นได้จากการจิบน้ำบ่อยๆ เท่านั้นเอง</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- วิธีการปลูก -->
+    <div id="plant">
+        <div class="container py-4 text-success">
+            <header class="pb-3 mb-4 border-bottom">
+                <span class="fs-4">วิธีการปลูก</span>
+                </a>
+            </header>
+            <div class="container marketing">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <img class="rounded-circle w-50 " src="img/p1.jpg" alt="">
+                        <h3 class="fw-normal m-3">เริ่มเพาะเมล็ด</h3>
+                        <ul>
+                            <li>เอาเมล็ดมาแช่น้ำอุ่น 1 คืน (บางคนก็ข้ามขั้นตอนนี้)</li>
+                            <li>นำเมล็ดมา ห่อด้วยทิชชู่ พรมน้ำให้ชุ่ม</li>
+                            <li>ใส่กระปุก ปิดฝา เก็บไว้ในที่มืดไม่ให้โดนแสงแดด </li>
+                            <li>2-3 วัน ให้เช็กว่ามีรากงอกรึยัง ถ้ามีเป็นอันใช้ได้ </li>
+                        </ul>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <img class="rounded-circle w-50" src="img/p2.png" alt="">
+                        <h3 class="fw-normal m-3">เพาะต้นอ่อน </h3>
+                        <ul>
+                            <li>ใช้ พีทมอส เพราะสามารถเติบโตได้ดี เมล็ดมีโอกาสโตได้เยอะ </li>
+                            <li>บางคนจะผสม พีทมอส ,เวอร์มิคูลไลท์ ,เพอร์ไลท์ ส่วนมากจะเป็น 70% 10% 10% </li>
+                            <li>นำเมล็ดกดลงไปไม่ต้องลึกมาก </li>
+                            <li>ปลูกในที่ร่มสัก 2-3 วัน พรมน้ำให้ชุ่ม (อย่าแฉะ)</li>
+                            <li>พ้น 3 วันให้เอาออกไปรับแดด </li>
+                            <li>ประมาณ 10 วันเตรียมย้ายลงกระถาง </li>
+                        </ul>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <img class="rounded-circle w-50" src="img/p3.jpg" alt="">
+                        <h3 class="fw-normal m-3">ปลูกต้นกัญชาลงกระถาง </h3>
+                        <ul>
+                            <li>เริ่มจากกระถางเล็กๆ ก่อน เช่น 6 นิ้ว </li>
+                            <li>เตรียมดิน ง่ายสุดคือ หน้าดิน ,ปุ๋ยหมัก 1 ต่อ 1 ผสมกัน</li>
+                            <li>อีกสูตรคือ พีทมอส ,ปุ๋ยหมัก ,เพอร์ไลท์ ,เวอร์มิคูไลท์ ,มูลไส้เดือน </li>
+                            <li>ง่ายกว่านั้นหาซื้อดินสำหรับปลูกกัญชามาใช้ </li>
+                            <li>นำต้นมาใส่</li>
+                            <li>อย่ารดน้ำมากเกินไป </li>
+                            <li>ปลูกใที่อย่าให้กัญชาใกล้พื้นที่มีมลพิษ เพราะกัญชาจะดูดซับ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- คำถาม -->
+        <div>
+            <div class="container py-4 text-success">
+                <header class="pb-3 mb-4 border-bottom">
+                    <span class="fs-4">ตั้งกระทู้พูดคุย</span>
+                    </a>
+                </header>
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label text-success px-3">ระบุหัวข้อกระทู้ของคุณ เช่น
+                            ปลูกกัญชาอย่างไรให้ได้ผลผลิตเยอะ</label>
+                        <textarea type="text" class="form-control border-success" id="Title"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-success px-3">เขียนรายละเอียดของกระทู้</label>
+                        <textarea class="form-control border-success" rows="10" id="Details"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success rounded-pill">ส่งกระทู้</button>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>
