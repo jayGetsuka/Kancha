@@ -63,14 +63,14 @@
                 {{ end }}
                 
             {{ else }}
-                    <p>ไม่มีคำตอบ</p>
+                    <p class="text-dark text-center font-weight-bold">ไม่มีคำตอบ</p>
                     {{ if .question }}
                     {{ range .question }}
                     <br><hr>
                     <form action="/addAnswer" method="post">
                         <div class="mb-3">
                             <label class="form-label text-success fw-bold px-3">ตอบกลับ</label>
-                            <textarea type="text" class="form-control border-success" id="response" name="text-response"></textarea>
+                            <textarea type="text" class="form-control border-success" id="response" name="text-response" required></textarea>
                             <input type="hidden" id="Qid" name="Qid" value="{{ .Id }}">
                         </div>
                         <button type="submit" class="btn btn-success rounded-pill">ส่งกระทู้</button>

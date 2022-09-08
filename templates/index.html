@@ -191,15 +191,15 @@
                     <span class="fs-4">ตั้งกระทู้พูดคุย</span>
                     </a>
                 </header>
-                <form>
+                <form action="/addQuestion" method="post">
                     <div class="mb-3">
                         <label class="form-label text-success px-3">ระบุหัวข้อกระทู้ของคุณ เช่น
                             ปลูกกัญชาอย่างไรให้ได้ผลผลิตเยอะ</label>
-                        <textarea type="text" class="form-control border-success" id="Title"></textarea>
+                        <textarea type="text" class="form-control border-success" id="Title" name="title" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label text-success px-3">เขียนรายละเอียดของกระทู้</label>
-                        <textarea class="form-control border-success" rows="10" id="Details"></textarea>
+                        <textarea class="form-control border-success" rows="10" id="Details" name="details" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-success rounded-pill">ส่งกระทู้</button>
                 </form>

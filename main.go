@@ -43,7 +43,8 @@ func PathRegister(c *gin.Context) {
 }
 func PathDetail(c *gin.Context) {
 	c.HTML(http.StatusOK, "detailsChat.html", gin.H{
-		"content": "This is an index page...",
+		"content":   "This is an index page...",
+		"resultLog": members,
 	})
 }
 
@@ -54,7 +55,8 @@ func PathshowChat(c *gin.Context) {
 	if err != nil {
 		// simply print the error to the console
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": err.Error(),
+			"content":   err.Error(),
+			"resultLog": members,
 		})
 		// returns nil on error
 
@@ -66,7 +68,8 @@ func PathshowChat(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": err.Error(),
+			"content":   err.Error(),
+			"resultLog": members,
 		})
 
 	} else {
@@ -186,23 +189,45 @@ func AddQuestion(c *gin.Context) {
 	if err != nil {
 		// simply print the error to the console
 		c.HTML(http.StatusOK, "register.html", gin.H{
-			"content": err.Error(),
-		})
-		// returns nil on error
-
+			"content":   err.Error(),
+			"resultLog": members,
+		}) // returns nil on error
 	}
 
 	defer db.Close()
 	results, err := db.Query("INSERT INTO questions (QuestTitle, QuestDetail, QuestMemberID)VALUES (?, ?, ?);", title, detail, Memberid)
-
+	_ = results
 	if err != nil {
 		c.HTML(http.StatusOK, "login.html", gin.H{
-			"content": err.Error(),
+			"content":   err.Error(),
+			"resultLog": members,
 		})
 	} else {
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": results,
-		})
+		results, err := db.Query("SELECT questions.QuestID, questions.QuestTitle, questions.QuestDetail, member.Fullname  FROM questions INNER JOIN member ON questions.QuestMemberID = member.Memid")
+		var quests = []Question{}
+
+		if err != nil {
+			c.HTML(http.StatusOK, "index.html", gin.H{
+				"content":   err.Error(),
+				"resultLog": members,
+			})
+
+		} else {
+			for results.Next() {
+				quest := Question{}
+				// create an instance of `Bird` and write the result of the current row into it
+				if err := results.Scan(&quest.Id, &quest.Title, &quest.Detail, &quest.OwnQuestion); err != nil {
+					log.Fatalf("could not scan row: %v", err)
+				}
+				// append the current instance to the slice of birds
+				quests = append(quests, quest)
+			}
+
+			c.HTML(http.StatusOK, "showChat.html", gin.H{
+				"question":  quests,
+				"resultLog": members,
+			})
+		}
 	}
 
 }
@@ -222,7 +247,8 @@ func DetailChat(c *gin.Context) {
 	if err != nil {
 		// simply print the error to the console
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": err.Error(),
+			"content":   err.Error(),
+			"resultLog": members,
 		})
 		// returns nil on error
 
@@ -230,12 +256,13 @@ func DetailChat(c *gin.Context) {
 
 	defer db.Close()
 	Qquery, err := db.Query("SELECT questions.QuestID, questions.QuestTitle, questions.QuestDetail, member.Fullname  FROM questions INNER JOIN member ON questions.QuestMemberID = member.Memid WHERE QuestID = ?", idChat)
-	Aquery, err := db.Query("SELECT Anstext, Fullname FROM `answers` INNER JOIN member ON answers.AnsmemberID = member.Memid WHERE QuestID = ?", idChat)
+	Aquery, err := db.Query("SELECT Anstext, Fullname FROM `answers` INNER JOIN member ON answers.AnsmemberID = member.Memid WHERE QuestID = ? ORDER BY Ansid", idChat)
 	var quests = []Question{}
 	var answers = []Answer{}
 	if err != nil {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": err.Error(),
+			"content":   err.Error(),
+			"resultLog": members,
 		})
 
 	} else {
@@ -291,14 +318,48 @@ func AddAnswer(c *gin.Context) {
 	defer db.Close()
 	results, err := db.Query("INSERT INTO answers (Anstext, AnsmemberID, QuestID)VALUES (?, ?, ?);", text, Memberid, QuestId)
 
+	_ = results
 	if err != nil {
 		c.HTML(http.StatusOK, "login.html", gin.H{
 			"content": err.Error(),
 		})
 	} else {
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": results,
-		})
+		Qquery, err := db.Query("SELECT questions.QuestID, questions.QuestTitle, questions.QuestDetail, member.Fullname  FROM questions INNER JOIN member ON questions.QuestMemberID = member.Memid WHERE QuestID = ?", QuestId)
+		Aquery, err := db.Query("SELECT Anstext, Fullname FROM `answers` INNER JOIN member ON answers.AnsmemberID = member.Memid WHERE QuestID = ? ORDER BY Ansid", QuestId)
+		var quests = []Question{}
+		var answers = []Answer{}
+		if err != nil {
+			c.HTML(http.StatusOK, "index.html", gin.H{
+				"content":   err.Error(),
+				"resultLog": members,
+			})
+
+		} else {
+			for Qquery.Next() {
+				quest := Question{}
+				// create an instance of `Bird` and write the result of the current row into it
+				if err := Qquery.Scan(&quest.Id, &quest.Title, &quest.Detail, &quest.OwnQuestion); err != nil {
+					log.Fatalf("could not scan row: %v", err)
+				}
+				// append the current instance to the slice of birds
+				quests = append(quests, quest)
+			}
+			for Aquery.Next() {
+				ans := Answer{}
+				// create an instance of `Bird` and write the result of the current row into it
+				if err := Aquery.Scan(&ans.AnsText, &ans.Fullname); err != nil {
+					log.Fatalf("could not scan row: %v", err)
+				}
+				// append the current instance to the slice of birds
+				answers = append(answers, ans)
+			}
+
+			c.HTML(http.StatusOK, "detailsChat.html", gin.H{
+				"question":  quests,
+				"answer":    answers,
+				"resultLog": members,
+			})
+		}
 	}
 
 }
