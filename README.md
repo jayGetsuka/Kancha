@@ -17,4 +17,8 @@ or go to link [gin gonic](https://github.com/gin-gonic/gin)
 
 or go to link [go-sql-driver mysql](https://github.com/go-sql-driver/mysql)
 
+`$ go install github.com/cosmtrek/air@latest`
+
+or go to link [air](https://github.com/cosmtrek/air)
+
 
