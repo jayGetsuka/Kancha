@@ -10,8 +10,11 @@
 
 ### Requirements
 `$ go get -u github.com/gin-gonic/gin `
+
 or go to link [gin gonic](https://github.com/gin-gonic/gin)
+
 `$  go get -u github.com/go-sql-driver/mysql`
+
 or go to link [go-sql-driver mysql](https://github.com/go-sql-driver/mysql)
 
 
