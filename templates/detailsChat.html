@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="/css/Style.css">
 </head>
 
 <body>
@@ -22,33 +22,63 @@
     <br>
     <div class="row justify-content-evenly">
         <div class="col-7">
-            <div class="card border-success mb-3 my-2">
-                <div class="card-header">คำถาม</div>
-                <div class="card-body bg-success text-white">
-                    <h5 class="card-title fw-bold px-3">กัญชาที่ใช้สกัดทำยา ต้องใช้กัญชาแห้งหรือสด</h5>
-                    <p class="card-text px-3">
-                        ปัจจุบันมีคนปลูกกัญชาขายมากขึ้นอยากทราบว่าต้องทำให้แห้งก่อนสกัดจะต้องทำอย่างไร
-                        ใช้วิธีตากแห้งหรืออบครับ</p>
-                    <div class="card-footer bg-transparent border-light text-white" style="font-size:12px">สมาชิก Name
+            {{ if .question }}
+                {{ range .question }}
+                    <div class="card border-success mb-3 my-2">
+                        <div class="card-header">คำถาม</div>
+                        <div class="card-body bg-success text-white">
+                            <h5 class="card-title fw-bold px-3">{{ .Title }}</h5>
+                            <p class="card-text px-3">
+                                {{ .Detail }}
+                                </p>
+                            <div class="card-footer bg-transparent border-light text-white" style="font-size:12px">{{ .OwnQuestion }}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="card border-success mb-3">
-                <div class="card-header">คำตอบ</div>
-                <div class="card-body text-success">
-                    <p class="card-text px-3">ทายมาครับ</p>
-                    <div class="card-footer bg-transparent border-success text-muted" style="font-size:12px">สมาชิก Name
+                {{ end }}
+            {{ end }}
+            {{ if .answer }}
+                {{ range .answer }}
+                    <div class="card border-success mb-3">
+                        <div class="card-header">คำตอบ</div>
+                        <div class="card-body text-success">
+                            <p class="card-text px-3">{{ .AnsText }}</p>
+                            <div class="card-footer bg-transparent border-success text-muted" style="font-size:12px">{{ .Fullname }}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <br><hr>
-            <form>
-                <div class="mb-3">
-                    <label class="form-label text-success fw-bold px-3">ตอบกลับ</label>
-                    <textarea type="text" class="form-control border-success" id="response"></textarea>
-                </div>
-                <button type="submit" class="btn btn-success rounded-pill">ส่งกระทู้</button>
-            </form>
+                {{ end }}
+                {{ if .question }}
+                    {{ range .question }}
+                    <br><hr>
+                    <form action="/addAnswer" method="post">
+                        <div class="mb-3">
+                            <label class="form-label text-success fw-bold px-3">ตอบกลับ</label>
+                            <textarea type="text" class="form-control border-success" id="response" name="text-response"></textarea>
+                            <input type="hidden" id="Qid" name="Qid" value="{{ .Id }}">
+                        </div>
+                        <button type="submit" class="btn btn-success rounded-pill">ส่งกระทู้</button>
+                    </form>
+                    {{ end }}
+                {{ end }}
+                
+            {{ else }}
+                    <p>ไม่มีคำตอบ</p>
+                    {{ if .question }}
+                    {{ range .question }}
+                    <br><hr>
+                    <form action="/addAnswer" method="post">
+                        <div class="mb-3">
+                            <label class="form-label text-success fw-bold px-3">ตอบกลับ</label>
+                            <textarea type="text" class="form-control border-success" id="response" name="text-response"></textarea>
+                            <input type="hidden" id="Qid" name="Qid" value="{{ .Id }}">
+                        </div>
+                        <button type="submit" class="btn btn-success rounded-pill">ส่งกระทู้</button>
+                    </form>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+            
 
         </div>
     </div>

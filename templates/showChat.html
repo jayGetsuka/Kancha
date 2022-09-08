@@ -22,26 +22,29 @@
     <br>
     <div class="row justify-content-evenly">
         <div class="col-7">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2 rounded-pill" type="search" placeholder="ค้นหากระทู้ที่น่าสนใจ" aria-label="Search">
+            <form class="d-flex" action="/searchQuestion" method="post">
+                <input class="form-control me-2 rounded-pill" type="search" placeholder="ค้นหากระทู้ที่น่าสนใจ" aria-label="Search" name="search">
                 <button class="btn btn-success rounded-pill px-4 py-2" type="submit">ค้นหา</button>
               </form><br><br>
             <div class="position-relative">
                 <p class="btn btn-success rounded-pill fs-5 px-4 position-absolute top-0 start-0">พูดคุย</p>
                 <a href="increaseChat.html" class="btn btn-success rounded-pill fs-5 px-4 position-absolute top-0 end-0"> + </a>
             </div><br><br>
-            <div class="card border-success my-2">
-                <div class="card-body ">
-                    <h5 class="card-title fw-bold text-success px-3">กัญชาที่ใช้สกัดทำยา ต้องใช้กัญชาแห้งหรือสด</h5>
-                    <p class="card-text text-success px-3">
-                        ปัจจุบันมีคนปลูกกัญชาขายมากขึ้นอยากทราบว่าต้องทำให้แห้งก่อนสกัดจะต้องทำอย่างไร
-                        ใช้วิธีตากแห้งหรืออบครับ
-                    </p>
-                    <a href="detailsChat.html" class="btn btn-success rounded-pill mx-3 my-2">ไปที่กระทู้</a>
-                    <div class="card-footer bg-transparent border-success text-muted text-center"
-                        style="font-size:12px">สมาชิก Name</div>
-                </div>
-            </div>
+            {{ if .question }}
+                {{ range .question }}
+                    <div class="card border-success my-2">
+                        <div class="card-body ">
+                            <h5 class="card-title fw-bold text-success px-3">{{ .Title }}</h5>
+                            <p class="card-text text-success px-3">{{ .Detail }}</p>
+                            <a href="/detailsChat.html/{{ .Id }}" class="btn btn-success rounded-pill mx-3 my-2">ไปที่กระทู้</a>
+                            <div class="card-footer bg-transparent border-success text-muted text-center"
+                                style="font-size:12px">{{ .OwnQuestion }}</div>
+                        </div>
+                    </div>
+                {{ end }}
+            {{ else }}
+                    <p class="text-dark">ไม่มีคำถาม</p>
+            {{ end }}
         </div>
     </div>
 </body>
